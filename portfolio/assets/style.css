@@ -1,0 +1,656 @@
+@charset "UTF-8";
+
+/* style.css の :root 部分を上書き、または修正してください */
+:root {
+  --bg-color: #F7F3ED;    /* 生成り色 */
+  --white: #FFFFFF;
+  --main-text: #333333;   /* 墨色 */
+  --sub-text: #6D5D50;    /* 土色 */
+  --accent-red: #C04040;  /* 深緋 */
+  --gold: #D4AF37;        /* 黄金 */
+  --accent-gold: #c5a059;
+  --font-main: "Noto Sans JP", sans-serif;
+  --font-logo: "Shippori Mincho", serif;
+}
+
+/* リンクの色などをアクセントカラーで統一 */
+.brand-name {
+  color: var(--main-text) !important;
+}
+
+.story-num {
+  font-weight: 700;
+}
+
+/* スキルリストのボーダーを黄金に */
+.skill-list li {
+  border-bottom: 1px dashed var(--gold);
+}
+
+/* 基本設定 */
+* { box-sizing: border-box; }
+html { 
+  scroll-behavior: smooth; 
+  font-size: 16px; /* ブラウザ標準 */
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--main-text);
+  font-family: var(--font-main);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* レイアウト */
+.container { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 0 5%; 
+}
+.section { padding: 120px 0; }
+.alt-bg { background-color: var(--white); }
+
+/* Header: PC主体の横並び */
+header {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 25px 6%; background: rgba(247, 243, 237, 0.85); 
+  backdrop-filter: blur(10px);
+}
+header .logo a {
+    color: var(--main-text); 
+    text-decoration: none;
+  font-family: var(--font-logo);
+  font-size: 1.5rem; letter-spacing: 0.4em; 
+}
+
+nav ul { 
+  display: flex; 
+  gap: 40px; 
+  list-style: none; /* ← ここで点を消しています */
+  margin: 0; 
+  padding: 0; 
+}
+nav ul a { 
+  text-decoration: none; 
+  color: var(--sub-text); 
+  font-weight: 700; 
+  font-size: 0.85rem; 
+  letter-spacing: 0.2em;
+  transition: 0.3s;
+}
+nav ul a:hover { color: var(--accent-red); }
+/* 固定ヘッダーの重なりを解消する */
+main {
+  padding-top: 110px; /* ヘッダーの高さに合わせて数値を調整してください */
+}
+
+/* スマホの時はヘッダーの高さが変わる場合があるので、こちらも調整 */
+@media (max-width: 768px) {
+  main {
+    padding-top: 140px; 
+  }
+}
+/* HERO: PCで動画の上に文字を美しく配置 */
+.hero {
+  height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center; 
+}
+
+.video-background {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+}
+.video-background video {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: sepia(10%) brightness(1.05) blur(1px);
+}
+.video-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(247, 243, 237, 0.8) 0%, rgba(247, 243, 237, 0.4) 100%);
+}
+
+.hero-content { 
+  width: 100%; padding: 0 6%; z-index: 10;
+}
+.hero-content h1 {
+  font-family: var(--font-logo); 
+  font-size: clamp(2.2rem, 6vw, 4rem); /* 画面幅に合わせてサイズが可変します */
+  letter-spacing: 0.3em; margin-bottom: 30px; line-height: 1.5;
+}
+.hero-sub { color: var(--sub-text); font-size: 1.1rem; margin-bottom: 50px; }
+
+/* 見出しの共通デザイン */
+.section-label {
+  display: block; font-size: 1rem; letter-spacing: 0.5em;
+  color: var(--gold); text-align: center; margin-bottom: 25px;
+  font-weight: 700;
+}
+.main-title {
+  font-family: var(--font-logo); font-size: 2.2rem;
+  text-align: center; margin-bottom: 80px; letter-spacing: 0.2em;
+}
+
+/* WORKS: 実績リスト */
+.work-stack { display: flex; flex-direction: column; gap: 120px; }
+.work-visual { 
+  width: 100%; height: 500px; background: #e8e4df; 
+  overflow: hidden; margin-bottom: 30px; 
+}
+.work-visual img { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; }
+.work-header { 
+  display: flex; justify-content: space-between; align-items: baseline; 
+  border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-bottom: 25px; 
+}
+
+/* ABOUT: ブランドチャート（PCで横並び） */
+.brand-chart { 
+  display: flex; align-items: center; justify-content: center; 
+  gap: 20px; padding: 60px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; 
+}
+
+/* お問い合わせボタン */
+.back-link {
+  display: inline-block; padding: 20px 60px; border: 1px solid var(--main-text);
+  color: var(--main-text); text-decoration: none; font-weight: 700; transition: 0.4s;
+}
+.back-link:hover { background: var(--main-text); color: var(--white); }
+
+/* =============================================
+   レスポンシブ対応（スマホ・タブレット用）
+   ============================================= */
+@media (max-width: 768px) {
+  header { padding: 15px 5%; flex-direction: column; gap: 15px; }
+  nav ul { gap: 20px; }
+  
+  .section { padding: 80px 0; }
+  .hero-content h1 { letter-spacing: 0.15em; line-height: 1.4; }
+  
+  .work-header { flex-direction: column; gap: 10px; }
+  .work-visual { height: 300px; }
+  
+  .brand-chart { flex-direction: column; gap: 10px; }
+  .brand-chart .plus, .brand-chart .equal { transform: rotate(90deg); margin: 10px 0; }
+}
+/* =============================================
+   WORKS詳細ページ用スタイル (PCメイン・レスポンシブ)
+   ============================================= */
+
+.detail-page { background-color: var(--bg-color); }
+
+/* Hero Visual: noriさん風 */
+.detail-hero-visual {
+  width: 100%;
+  height: 70vh; /* 画面の7割を占める迫力 */
+  background-color: #eee;
+  overflow: hidden;
+}
+.detail-hero-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.detail-title-block { padding: 80px 0 60px; text-align: left; }
+.category-tag {
+  font-size: 0.9rem; color: var(--gold); letter-spacing: 0.2em;
+  display: block; margin-bottom: 20px; font-weight: 700;
+}
+.detail-title-block h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem); font-family: var(--font-logo);
+  margin-bottom: 30px; letter-spacing: 0.1em; line-height: 1.3;
+}
+.hero-summary {
+  max-width: 800px; color: var(--sub-text); line-height: 2.2; font-size: 1.2rem;
+}
+
+/* Data Table: 細い水平線で整理 */
+.project-info {
+  border-top: 1px solid var(--main-text);
+  border-bottom: 1px solid var(--main-text);
+  padding: 60px 0;
+  margin-bottom: 120px;
+}
+.info-table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* PCで5列 */
+  gap: 30px;
+}
+.info-label {
+  font-size: 0.8rem; color: #999; letter-spacing: 0.1em;
+  display: block; margin-bottom: 15px;
+}
+.info-value {
+  font-size: 1rem; font-weight: 700; color: var(--main-text);
+}
+
+/* Content Sections */
+.detail-section { padding: 120px 0; text-align: left; }
+.sub-heading {
+  font-family: var(--font-logo); font-size: 1.8rem;
+  margin-bottom: 50px; border-left: 4px solid var(--accent-red);
+  padding-left: 25px; line-height: 1.2;
+}
+.story-content { max-width: 850px; font-size: 1.15rem; }
+
+/* =============================================
+   Gallery Stack (実績詳細の画像と説明文)
+   確実に縦に並べるための修正
+   ============================================= */
+.gallery-stack {
+  display: block !important; /* 強制的に縦並びにする */
+  width: 100%;
+  margin: 80px 0;
+}
+
+.gallery-item {
+  display: flex;
+  flex-wrap: nowrap; /* PCでは画像とテキストを横に並べる */
+  align-items: flex-start;
+  gap: 60px;
+  width: 100%;
+  margin-bottom: 150px; /* 各実績の間の余白 */
+}
+
+/* 偶数番目は左右入れ替え */
+.gallery-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.gallery-img {
+  flex: 0 0 60%; /* 画像の幅を60%で固定して、潰れないようにする */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+}
+
+.gallery-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-text {
+  flex: 1;
+  padding-top: 20px;
+}
+
+.gallery-text h3 {
+  font-family: var(--font-logo);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--main-text);
+  border-bottom: 1px solid var(--gold);
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.gallery-text p {
+  font-size: 1.1rem;
+  color: var(--sub-text);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* モバイル対応：スマホでは画像もテキストも全部縦1列に */
+@media (max-width: 900px) {
+  .gallery-item, 
+  .gallery-item:nth-child(even) {
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+  
+  .gallery-img {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* Back Link Navigation */
+.detail-nav { text-align: center; padding: 150px 0; }
+
+/* レスポンシブ：スマホ対応 */
+@media (max-width: 900px) {
+  .info-table { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .gallery-item { flex-direction: column; gap: 40px; }
+  .detail-title-block h1 { font-size: 2.2rem; }
+  .detail-hero-visual { height: 50vh; }
+}
+/* =============================================
+   ABOUT詳細ページ用スタイル
+   ============================================= */
+
+.about-detail-page { background-color: var(--bg-color); }
+
+/* Hero */
+.about-hero { padding: 180px 0 100px; }
+.about-hero-grid {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+.about-hero-img { flex: 1; height: 600px; background: #eee; overflow: hidden; }
+.about-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-hero-text { flex: 1.2; text-align: left; }
+.about-hero-text h1 { 
+  font-family: var(--font-logo); font-size: 3.5rem; 
+  margin-bottom: 40px; line-height: 1.4; letter-spacing: 0.15em;
+}
+.lead-text { font-size: 1.25rem; color: var(--sub-text); line-height: 2.2; }
+
+/* Story Items */
+.about-story .container { max-width: 800px; }
+.story-item { 
+  display: flex; gap: 40px; margin-bottom: 120px; 
+  border-bottom: 1px solid #ddd; padding-bottom: 60px;
+}
+.story-num { font-family: var(--font-logo); font-size: 2rem; color: var(--gold); }
+.story-content h3 { font-family: var(--font-logo); font-size: 1.8rem; margin-bottom: 25px; }
+.story-content p { font-size: 1.1rem; color: var(--sub-text); }
+
+/* Profile Grid */
+.profile-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 100px; text-align: left; }
+.profile-grid h2 { 
+  font-family: var(--font-logo); font-size: 2rem; margin-bottom: 40px; 
+  border-bottom: 1px solid var(--main-text); padding-bottom: 10px;
+}
+.skill-list { list-style: none; padding: 0; }
+.skill-list li { 
+  padding: 15px 0; border-bottom: 1px dashed #ccc; 
+  font-weight: 700; color: var(--sub-text);
+}
+/* ABOUTページのメインコピーを際立たせる */
+.about-main-copy {
+  font-family: var(--font-logo);
+  font-size: clamp(2.2rem, 5vw, 3.8rem); /* PCで大きく、スマホで適切に */
+  line-height: 1.4;
+  margin-bottom: 40px;
+  letter-spacing: 0.15em;
+}
+
+/* ストーリーの見出し（キャッチコピー） */
+.story-catch {
+  font-family: var(--font-logo);
+  font-size: 1.8rem;
+  color: var(--main-text);
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+/* キャッチコピーの下に薄い金のラインを入れる（プロの演出） */
+.story-catch::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* ストーリー内の重要な強調 */
+.story-content strong {
+  color: var(--accent-red); /* 深緋色で視線を止める */
+  font-weight: 700;
+  background: linear-gradient(transparent 70%, #fdf2f2 70%); /* 薄い背景色で強調 */
+}
+
+/* 贅沢な余白の設定 */
+.story-item {
+  margin-bottom: 160px; /* PCでの余白を大幅に増やす */
+}
+
+@media (max-width: 768px) {
+  .story-item {
+    margin-bottom: 100px; /* スマホでも十分な余白を確保 */
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-hero-grid { flex-direction: column; text-align: center; }
+  .about-hero-text { text-align: center; }
+  .about-hero-img { width: 100%; height: 400px; }
+  .profile-grid { grid-template-columns: 1fr; gap: 60px; }
+  .story-item { flex-direction: column; gap: 20px; }
+}
+/* =============================================
+   CONTACTページ用スタイル
+   ============================================= */
+
+.contact-page { background-color: var(--bg-color); }
+
+.contact-hero { padding: 180px 0 60px; text-align: center; }
+.contact-lead { 
+  max-width: 800px; margin: 0 auto; 
+  font-size: 1.15rem; color: var(--sub-text); line-height: 2.2;
+}
+
+/* フォームの設計：一本の線で構成 */
+.contact-form {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 50px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-logo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 0.1em;
+}
+
+.form-group label span {
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--gold);
+  margin-left: 10px;
+}
+
+/* 入力欄：枠線を下線だけにしてモダンに */
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  padding: 15px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--main-text);
+  font-size: 1.1rem;
+  font-family: var(--font-main);
+  color: var(--main-text);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.4s ease;
+}
+
+/* フォーカス時に深緋（アクセントカラー）に光る */
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-bottom: 1px solid var(--accent-red);
+}
+
+/* 送信ボタン */
+.form-submit {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.submit-btn {
+  background: transparent;
+  border: 1px solid var(--main-text);
+  padding: 20px 80px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--main-text);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.submit-btn:hover {
+  background: var(--main-text);
+  color: var(--white);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .contact-hero { padding: 120px 0 40px; }
+  .submit-btn { width: 100%; }
+}
+/* =============================================
+   /* =============================================
+   /* =============================================
+   6. WORKS ギャラリー (スクロール対応・グリッド)
+   /* =============================================
+   /* =============================================
+   /* ============================================= */
+
+/* ヘッダーの重なりを解消するための余白 */
+.works-gallery-main {
+    padding-top: 140px; /* PCヘッダーの高さ(約80px) + 余裕(60px) */
+    min-height: 100vh; /* 実績がなくても全画面分の背景を確保 */
+}
+
+.works-gallery-title {
+    text-align: center;
+    font-family: var(--font-logo); /* 既存の Shippori Mincho */
+    font-size: clamp(2rem, 4vw, 3rem); /* 画面幅に合わせてサイズを自動調整 */
+    letter-spacing: 0.3em;
+    margin-bottom: 80px; /* グリッドとの間隔 */
+    color: var(--main-text);
+}
+
+/* 視覚的に並べるグリッドシステム */
+.works-grid {
+    display: grid;
+    /* 画面幅に応じて300px以上の要素を自動で並べる (プロの現場での定石) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px 40px; /* 縦・横の隙間 */
+    max-width: 1200px; /* 画面を最大化した時に広がりすぎないように固定 */
+    margin: 0 auto;    /* 中央寄せ */
+    padding: 0 6% 120px; /* 左右の余白と、一番下の余白 */
+}
+
+/* 各実績アイテムの見た目 */
+.work-item {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    display: block;
+}
+
+/* マウスを乗せた時の動き (プロっぽい演出) */
+.work-item:hover {
+    transform: translateY(-8px); /* 浮かび上がる */
+    opacity: 0.7;
+}
+
+/* 画像の設定 (aspect-ratio で比率を統一するのがプロのコツ) */
+.work-item img {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 画像の比率を16:9に固定して切り抜く */
+    object-fit: cover;    /* 切り抜き方を設定 */
+    background-color: #e8e4df; /* 画像がない場合の仮の色 */
+    margin-bottom: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 影をつけて立体感を出す */
+}
+
+/* カテゴリータグ (2枚目のゴールドの枠線デザイン) */
+.category-tag {
+    display: inline-block;
+    padding: 2px 12px;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.work-item h3 {
+    font-family: var(--font-logo);
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* =============================================
+   レスポンシブ対応（スマホ・タブレット用）
+   ============================================= */
+@media (max-width: 768px) {
+  /* スマホではヘッダーが縦に伸びるため、余白を増やす */
+  .works-gallery-main {
+    padding-top: 160px;
+  }
+  
+  /* タイトルを少し小さく */
+  .works-gallery-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
+  /* グリッドを1列に */
+  .works-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+/* =============================================
+   画像拡大（モーダル）のスタイル
+   ============================================= */
+.modal {
+    display: none; /* 最初は隠す */
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* 背景を暗く */
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoom 0.3s;
+}
+
+/* ふわっと表示させるアニメーション */
+@keyframes zoom {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 30px; right: 40px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* ギャラリー画像にマウスを乗せた時の演出 */
+.gallery-img img {
+    cursor: zoom-in;
+    transition: opacity 0.3s;
+}
+
+.gallery-img img:hover {
+    opacity: 0.8;
+}
+
